@@ -10,7 +10,7 @@ type NullInt64 struct {
 }
 
 func (this NullInt64) MarshalJSON() ([]byte, error) {
-	return json.Marshal(this)
+	return json.Marshal(&this)
 	/*
 		if !ni.Valid {
 			return []byte{}, nil
