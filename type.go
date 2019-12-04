@@ -10,7 +10,7 @@ type NullInt64 struct {
 }
 
 func (ni NullInt64) MarshalJSON() int {
-	return len(ni.Int64)
+	return 8
 }
 
 func (ni NullInt64) MarshalJSON() ([]byte, error) {
