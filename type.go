@@ -3,6 +3,7 @@ package gogotype
 import (
 	"database/sql"
 	"encoding/json"
+	"strconv"
 )
 
 type NullInt64 struct {
@@ -23,8 +24,10 @@ func (ni *NullInt64) Unmarshal(data []byte) error {
 }
 
 func (ni NullInt64) String() string {
-	d, _ := json.Marshal(&ni)
-	return string(d)
+	if ns.Valid {
+		return strconv.FormatInt(ni.Int64, 10)
+	}
+	return "0"
 }
 
 type NullString struct {
@@ -43,7 +46,10 @@ func (ns NullString) Marshal() ([]byte, error) {
 func (ns *NullString) Unmarshal(data []byte) error {
 	return json.Unmarshal(data, &ns)
 }
+
 func (ns NullString) String() string {
-	d, _ := json.Marshal(&ns)
-	return string(d)
+	if ns.Valid {
+		return ns.String
+	}
+	return ""
 }
