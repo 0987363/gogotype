@@ -9,7 +9,7 @@ type NullInt64 struct {
 	sql.NullInt64
 }
 
-func (ni NullInt64) MarshalJSON() int {
+func (ni NullInt64) Size() int {
 	return 8
 }
 
