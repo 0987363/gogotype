@@ -30,15 +30,18 @@ type NullString struct {
 	sql.NullString
 }
 
-// MarshalJSON for NullString
-func (ns *NullString) MarshalJSON() ([]byte, error) {
+func (ni NullString) Size() int {
+	return len(ns.String)
+}
+
+func (ns *NullString) Marshal() ([]byte, error) {
 	if !ns.Valid {
-		return []byte("null"), nil
+		return []byte{}, nil
 	}
 	return json.Marshal(ns.String)
 }
 
-func (ns *NullString) UnmarshalJSON(b []byte) error {
+func (ns *NullString) Unmarshal(b []byte) error {
 	err := json.Unmarshal(b, &ns.String)
 	ns.Valid = (err == nil)
 	return err
