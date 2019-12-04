@@ -9,8 +9,8 @@ type NullInt64 struct {
 	sql.NullInt64
 }
 
-func (this NullInt64) MarshalJSON() ([]byte, error) {
-	return json.Marshal(&this)
+func (ni NullInt64) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&ni)
 	/*
 		if !ni.Valid {
 			return []byte{}, nil
@@ -19,13 +19,13 @@ func (this NullInt64) MarshalJSON() ([]byte, error) {
 	*/
 }
 
-func (this *NullInt64) UnmarshalJSON(data []byte) error {
+func (ni *NullInt64) UnmarshalJSON(data []byte) error {
 	/*
 		err := json.Unmarshal(b, &ni.Int64)
 		ni.Valid = (err == nil)
 		return err
 	*/
-	err := json.Unmarshal(data, this)
+	err := json.Unmarshal(data, ni)
 	if err != nil {
 		return err
 	}
