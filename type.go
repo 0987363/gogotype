@@ -16,6 +16,7 @@ func (ni *NullInt64) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(ni.Int64)
 }
+
 func (ni *NullInt64) UnmarshalJSON(b []byte) error {
 	err := json.Unmarshal(b, &ni.Int64)
 	ni.Valid = (err == nil)
