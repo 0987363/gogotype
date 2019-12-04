@@ -13,14 +13,14 @@ func (ni NullInt64) Size() int {
 	return 8
 }
 
-func (ni NullInt64) MarshalJSON() ([]byte, error) {
+func (ni NullInt64) Marshal() ([]byte, error) {
 	if !ni.Valid {
 		return []byte{}, nil
 	}
 	return json.Marshal(ni.Int64)
 }
 
-func (ni *NullInt64) UnmarshalJSON(data []byte) error {
+func (ni *NullInt64) Unmarshal(data []byte) error {
 	err := json.Unmarshal(data, &ni.Int64)
 	ni.Valid = (err == nil)
 	return err
