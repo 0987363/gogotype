@@ -30,11 +30,11 @@ type NullString struct {
 	sql.NullString
 }
 
-func (ni NullString) Size() int {
+func (ns NullString) Size() int {
 	return len(ns.String)
 }
 
-func (ns *NullString) Marshal() ([]byte, error) {
+func (ns NullString) Marshal() ([]byte, error) {
 	if !ns.Valid {
 		return []byte{}, nil
 	}
