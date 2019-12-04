@@ -23,8 +23,8 @@ func (ni *NullInt64) Unmarshal(data []byte) error {
 	return json.Unmarshal(data, &ni)
 }
 
-func (ni NullInt64) String() string {
-	if ns.Valid {
+func (ni *NullInt64) String() string {
+	if ni.Valid {
 		return strconv.FormatInt(ni.Int64, 10)
 	}
 	return "0"
@@ -47,9 +47,9 @@ func (ns *NullString) Unmarshal(data []byte) error {
 	return json.Unmarshal(data, &ns)
 }
 
-func (ns NullString) String() string {
+func (ns *NullString) String() string {
 	if ns.Valid {
-		return ns.String
+		return ns.NullString.String
 	}
 	return ""
 }
