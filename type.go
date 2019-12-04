@@ -10,29 +10,26 @@ type NullInt64 struct {
 }
 
 func (this NullInt64) MarshalJSON() ([]byte, error) {
-	return json.Marshal([]byte(this))
+	return json.Marshal(this)
 	/*
-	if !ni.Valid {
-		return []byte{}, nil
-	}
-	return json.Marshal(ni.Int64)
+		if !ni.Valid {
+			return []byte{}, nil
+		}
+		return json.Marshal(ni.Int64)
 	*/
 }
 
 func (this *NullInt64) UnmarshalJSON(data []byte) error {
 	/*
-	err := json.Unmarshal(b, &ni.Int64)
-	ni.Valid = (err == nil)
-	return err
+		err := json.Unmarshal(b, &ni.Int64)
+		ni.Valid = (err == nil)
+		return err
 	*/
-	v := new([]byte)
-	err := json.Unmarshal(data, v)
+	err := json.Unmarshal(data, this)
 	if err != nil {
 		return err
 	}
-	*this = *v
 	return nil
-
 }
 
 type NullString struct {
