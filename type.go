@@ -32,18 +32,18 @@ type NullString struct {
 }
 
 func (ns NullString) Size() int {
-	return len(ns.String)
+	d, _ := json.Marshal(&ns)
+	return len(d)
 }
 
 func (ns NullString) Marshal() ([]byte, error) {
-	if !ns.Valid {
-		return []byte{}, nil
-	}
-	return json.Marshal(ns.String)
+	return json.Marshal(&ns)
 }
 
-func (ns *NullString) Unmarshal(b []byte) error {
-	err := json.Unmarshal(b, &ns.String)
-	ns.Valid = (err == nil)
-	return err
+func (ns *NullString) Unmarshal(data []byte) error {
+	return json.Unmarshal(data, &ns)
+}
+func (ns NullString) String() string {
+	d, _ := json.Marshal(&ns)
+	return string(d)
 }
