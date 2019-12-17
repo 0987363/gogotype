@@ -60,15 +60,8 @@ func (ns *NullString) String() string {
 
 type StringArray []string
 
+/*
 func (a StringArray) Size() int {
-	/*
-	var i int
-	for _, s := range a {
-		i += len(s)
-	}
-	return i
-	*/
-
 	d, _ := json.Marshal(&a)
 	return len(d)
 }
@@ -84,6 +77,16 @@ func (a *StringArray) Unmarshal(data []byte) error {
 func (a *StringArray) String() string {
 	return fmt.Sprintf("%v", *a)
 }
+*/
+
+func (a StringArray) MarshalJSON() ([]byte, error) {
+	return json.Marshal(&a)
+}
+
+func (a *StringArray) UnmarshalJSON(data []byte) error {
+	return json.Unmarshal(data, &a)
+}
+
 
 // Scan implements the sql.Scanner interface.
 func (a *StringArray) Scan(src interface{}) error {
