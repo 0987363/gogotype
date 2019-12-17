@@ -61,11 +61,16 @@ func (ns *NullString) String() string {
 type StringArray []string
 
 func (a StringArray) Size() int {
+	/*
 	var i int
 	for _, s := range a {
 		i += len(s)
 	}
 	return i
+	*/
+
+	d, _ := json.Marshal(&ns)
+	return len(d)
 }
 
 func (a StringArray) Marshal() ([]byte, error) {
