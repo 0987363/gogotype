@@ -69,7 +69,7 @@ func (a StringArray) Size() int {
 	return i
 	*/
 
-	d, _ := json.Marshal(&ns)
+	d, _ := json.Marshal(&a)
 	return len(d)
 }
 
